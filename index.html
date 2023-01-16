@@ -3,27 +3,16 @@
 <head>
   <title>My GitHub Pages Website</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script>
-    var button = document.getElementById("myButton");
-
-    button.addEventListener("mouseover", function() {
-      button.style.backgroundColor = "purple";
-      button.style.transform = "scale(1.2)";
-    });
-
-    button.addEventListener("mouseout", function() {
-      button.style.backgroundColor = "blue";
-      button.style.transform = "scale(1)";
-    });
-
-    button.addEventListener("mousedown", function() {
-      button.style.backgroundColor = "red";
-    });
-
-    button.addEventListener("mouseup", function() {
-      button.style.backgroundColor = "purple";
-    });
-  </script>
+  <style>
+    button {
+      transition: background-color 0.5s ease-in-out,
+                  transform 0.5s ease-in-out;
+    }
+    button:hover {
+      background-color: purple;
+      transform: scale(1.2);
+    }
+  </style>
 </head>
 <body>
   <h1>Welcome to my website!</h1>
@@ -31,5 +20,14 @@
    <button id="myButton">About me</button>
   </a>
   <p>This is my website that I'm hosting on GitHub Pages.</p>
+  <script>
+    var button = document.getElementById("myButton");
+    button.addEventListener("mouseover", function() {
+      button.classList.add("animated");
+    });
+    button.addEventListener("mouseout", function() {
+      button.classList.remove("animated");
+    });
+  </script>
 </body>
 </html>
