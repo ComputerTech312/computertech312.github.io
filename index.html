@@ -3,6 +3,27 @@
 <head>
   <title>My GitHub Pages Website</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <script>
+    var button = document.getElementById("myButton");
+
+    button.addEventListener("mouseover", function() {
+      button.style.backgroundColor = "purple";
+      button.style.transform = "scale(1.2)";
+    });
+
+    button.addEventListener("mouseout", function() {
+      button.style.backgroundColor = "blue";
+      button.style.transform = "scale(1)";
+    });
+
+    button.addEventListener("mousedown", function() {
+      button.style.backgroundColor = "red";
+    });
+
+    button.addEventListener("mouseup", function() {
+      button.style.backgroundColor = "purple";
+    });
+  </script>
 </head>
 <body>
   <h1>Welcome to my website!</h1>
