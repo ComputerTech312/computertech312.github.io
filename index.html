@@ -1,25 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>My GitHub Pages Website</title>
+
+<head>
+    <title>My Website</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-  </head>
-  <body>
-    <h1>Welcome to my website!</h1>
-    <a href="about.html">
-      <button id="myButton">About me</button>
-    </a>
-    <p>This is my website that I'm hosting on GitHub Pages.</p>
-    <div class="fancy-animation">
-      <p>This element will spin!</p>
-    </div>
-    <script>
-      var element = document.querySelector('.fancy-animation');
-      var angle = 0;
-      setInterval(function() {
-        angle = (angle + 10) % 360;
-        element.style.transform = 'rotate(' + angle + 'deg)';
-      }, 100);
-    </script>
-  </body>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <h1 id="myHeading">Original Text</h1>
+    <button id="myButton">Change Text</button>
+</body>
+
 </html>
