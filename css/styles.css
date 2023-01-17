@@ -1,19 +1,7 @@
 body {
-    background-color: #f1f1f1;
-    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
 }
-h1 {
-    text-align: center;
-    color: #333;
-}
-p {
-    margin: 20px;
-    font-size: 18px;
-    line-height: 1.5;
-}
-#myButton {
-  background-color: blue;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
+
+#myHeading {
+    color: #333333;
 }
