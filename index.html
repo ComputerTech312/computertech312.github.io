@@ -1,33 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>My GitHub Pages Website</title>
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <style>
-    button {
-      transition: background-color 0.5s ease-in-out,
-                  transform 0.5s ease-in-out;
-    }
-    button:hover {
-      background-color: purple;
-      transform: scale(1.2);
-    }
-  </style>
-</head>
-<body>
-  <h1>Welcome to my website!</h1>
+  <head>
+    <title>My GitHub Pages Website</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+  </head>
+  <body>
+    <h1>Welcome to my website!</h1>
     <a href="about.html">
-   <button id="myButton">About me</button>
-  </a>
-  <p>This is my website that I'm hosting on GitHub Pages.</p>
-  <script>
-    var button = document.getElementById("myButton");
-    button.addEventListener("mouseover", function() {
-      button.classList.add("animated");
-    });
-    button.addEventListener("mouseout", function() {
-      button.classList.remove("animated");
-    });
-  </script>
-</body>
+      <button id="myButton">About me</button>
+    </a>
+    <p>This is my website that I'm hosting on GitHub Pages.</p>
+    <div class="fancy-animation">
+      <p>This element will spin!</p>
+    </div>
+    <script>
+      var element = document.querySelector('.fancy-animation');
+      var angle = 0;
+      setInterval(function() {
+        angle = (angle + 10) % 360;
+        element.style.transform = 'rotate(' + angle + 'deg)';
+      }, 100);
+    </script>
+  </body>
 </html>
