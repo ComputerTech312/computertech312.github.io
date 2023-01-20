@@ -4,7 +4,7 @@
   margin: 100px 0;
   font-family: sans-serif;
   position: relative;
-  color: #333;
+  color: #fffefa;
   text-shadow: 0 0 1px rgba(255,255,255,0.2);
 }
 
@@ -15,7 +15,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: #333;
+  background: #010382;
   color: #fff;
   animation: wave 10s linear infinite;
 }
