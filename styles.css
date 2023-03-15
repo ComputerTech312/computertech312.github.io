@@ -1,53 +1,29 @@
-.waves {
-  font-size: 5em;
-  text-align: center;
-  margin: 100px 0;
-  font-family: sans-serif;
-  position: relative;
-  color: #fffefa;
-  text-shadow: 0 0 1px rgba(255,255,255,0.2);
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
-.waves:before, .waves:after {
-  content: "ComputerTech";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #010382;
-  color: #fff;
-  animation: wave 10s linear infinite;
+h1 {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    margin: 0;
 }
 
-.waves:before {
-  text-shadow: 0 0 1px rgba(255,255,255,0.2);
-  z-index: -1;
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    margin-top: 1rem;
 }
 
-.waves:after {
-  text-shadow: 0 0 1px rgba(255,255,255,0.2);
-  z-index: -2;
-  animation-delay: -5s;
-}
-
-@keyframes wave {
-  0% {
-    transform: rotate(0);
-  }
-  20% {
-    transform: rotate(-2deg);
-  }
-  40% {
-    transform: rotate(2deg);
-  }
-  60% {
-    transform: rotate(-1deg);
-  }
-  80% {
-    transform: rotate(1deg);
-  }
-  100% {
-    transform: rotate(0);
-  }
+button:hover {
+    background-color: #555;
 }
