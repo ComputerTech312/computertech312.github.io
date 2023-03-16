@@ -9,27 +9,30 @@
 </head>
 
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="contact.html">Contact Me</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h1>Welcome to My Improved Website!</h1>
-        <p>Click the button below to see an alert:</p>
-        <button id="myButton">Click me!</button>
-        <section>
-            <h2>About Me</h2>
-            <p>I am Colby, also known as ComputerTech. I am a programmer/sysadmin. You'll usually find me by tracking broken stuff, which was probably broken by me.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 My Improved Website. All rights reserved.</p>
-    </footer>
-
+    <div class="wrapper">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="contact.html">Contact Me</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>Welcome to My Improved Website!</h1>
+            <p>Click the button below to see an alert:</p>
+            <button id="myButton">Click me!</button>
+            <section>
+                <h2>About Me</h2>
+                <p>
+                  I am Colby, also known as ComputerTech. I am a <span class="typing-wrapper"><span id="typedText"></span><span id="cursor">|</span></span><span class="new-line"> You'll usually find me by finding broken stuff, which was probably broken by me.</span>
+                </p>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; ComputerTech's Website. @ 2023</p>
+        </footer>
+    </div>
     <script src="scripts.js"></script>
 </body>
 
