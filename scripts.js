@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Typing animation functionality
   const typedText = document.getElementById("typedText");
   const cursor = document.getElementById("cursor");
-  const words = ["a programmer", "a sysadmin", "a hacker"]; // Words to cycle through
+  const words = ["a programmer", "a sysadmin"]; // Words to cycle through
   let wordIndex = 0; // Start with the first word in the array
   let letterIndex = 0; // Start at the beginning of the current word
 
