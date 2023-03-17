@@ -125,3 +125,15 @@ footer {
 .new-line {
   display: block;
 }
+
+p {
+  margin-left: 20px;
+}
+
+button {
+  margin-left: 20px;
+}
+
+h2 {
+  margin-left: 20px;
+}
