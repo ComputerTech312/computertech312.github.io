@@ -79,6 +79,7 @@ button:hover {
     flex: 1;
     min-width: 250px;
     text-align: center;
+    height: 150px; /* <-- Updated height property */
 }
 
 .contact-icon {
