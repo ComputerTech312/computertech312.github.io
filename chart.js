@@ -1,5 +1,5 @@
 const username = 'computertech312';
-const apiUrl = `https://cors-anywhere.herokuapp.com/https://api.github.com/users/${username}/repos`;
+const apiUrl = `https://api.github.com/users/${username}/repos`;
 
 fetch(apiUrl)
     .then((response) => response.json())
