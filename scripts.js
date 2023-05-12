@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Typing animation functionality
   const typedText = document.getElementById("typedText");
   const cursor = document.getElementById("cursor");
-  const words = ["I'm a programmer.", "I'm a sysadmin.", "I own/manage multiple communities."]; // Words to cycle through
+  const words = ["I'm a full stack developer", "I'm a programmer.", "I'm a sysadmin.", "I own/manage multiple communities."]; // Words to cycle through
   let wordIndex = 0; // Start with the first word in the array
   let letterIndex = 0; // Start at the beginning of the current word
 
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     letterIndex++;
     if (letterIndex === word.length) {
       // Word is fully typed, wait a few seconds before starting delete
-      setTimeout(deleteLetter, 2000);
+      setTimeout(deleteLetter, 1500);
       return;
     }
     setTimeout(typeLetter, 150);
