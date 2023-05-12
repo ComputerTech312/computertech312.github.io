@@ -137,3 +137,14 @@ button {
 h2 {
   margin-left: 20px;
 }
+
+/* The new CSS class for the code block */
+.code-block {
+  font-family: monospace;
+  background-color: #f6f8fa;
+  padding: 16px;
+  border-radius: 6px;
+  border: 1px solid #d1d5da;
+  overflow: auto;
+  margin: 20px;
+}
