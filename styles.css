@@ -64,36 +64,15 @@ button:hover {
     background-color: #555;
 }
 
-.contact-options {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.contact-option {
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    padding: 1rem;
-    margin: 1rem;
-    flex: 1;
-    min-width: 250px;
-    text-align: center;
-    height: 150px; /* <-- Updated height property */
-}
-
-.contact-icon {
-    width: 64px;
-    height: 64px;
-}
-
-.contact-option a {
-    color: #333;
-    text-decoration: none;
-}
-
-.contact-option a:hover {
-    text-decoration: underline;
+/* The new CSS class for the code block */
+.code-block {
+  font-family: monospace;
+  background-color: #f6f8fa;
+  padding: 16px;
+  border-radius: 6px;
+  border: 1px solid #d1d5da;
+  overflow: auto;
+  margin: 20px;
 }
 
 footer {
@@ -138,13 +117,41 @@ h2 {
   margin-left: 20px;
 }
 
-/* The new CSS class for the code block */
-.code-block {
-  font-family: monospace;
-  background-color: #f6f8fa;
-  padding: 16px;
-  border-radius: 6px;
-  border: 1px solid #d1d5da;
-  overflow: auto;
-  margin: 20px;
+body.dark-theme {
+    background-color: #04002b;
+    color: #f0f0f0;
+}
+
+body.dark-theme header,
+body.dark-theme h1,
+body.dark-theme footer {
+    background-color: #02000f;
+    color: #f0f0f0;
+}
+
+body.dark-theme nav a {
+    color: #f0f0f0;
+}
+
+body.dark-theme button,
+body.dark-theme button:hover {
+    background-color: #f0f0f0;
+    color: #010247;
+}
+
+body.dark-theme .code-block {
+    background-color: #333;
+    color: #f0f0f0;
+    border-color: #f0f0f0;
+}
+
+#theme-switcher {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+#theme-switcher:hover {
+    text-decoration: underline;
 }
