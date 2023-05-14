@@ -61,10 +61,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     const languageColors = {
         'Python': 'blue',
-        'JavaScript': 'red',
+        'JavaScript': '',
         'HTML': 'green',
         'CSS': 'yellow',
-		'Java': 'red',
+        'Java': 'yellow',
     };
 
     const defaultColors = ['grey', 'silver', 'brown', 'pink', 'magenta'];
