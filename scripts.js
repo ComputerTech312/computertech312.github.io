@@ -1,24 +1,27 @@
-function toggleTheme() {
-    const body = document.body;
-    body.classList.toggle('dark-theme');
-    
-    let theme = "light";
-    if(body.classList.contains('dark-theme')) {
-        theme = "dark";
-    }
-    localStorage.setItem('theme', theme);
-}
-
-// On page load, check for a saved theme in LocalStorage
 document.addEventListener('DOMContentLoaded', (event) => {
+    const body = document.body;
+    
+    function toggleTheme() {
+        body.classList.toggle('dark-theme');
+        
+        let theme = "light";
+        if(body.classList.contains('dark-theme')) {
+            theme = "dark";
+        }
+        localStorage.setItem('theme', theme);
+    }
+
     const savedTheme = localStorage.getItem('theme') || 'light';
     if(savedTheme === 'dark') {
-        document.body.classList.add('dark-theme');
+        body.classList.add('dark-theme');
     }
+
+    // Event listener for theme toggle button
+    const themeToggle = document.getElementById("themeToggle");
+    themeToggle.addEventListener("click", toggleTheme);
 
     // Button alert functionality
     const myButton = document.getElementById("myButton");
-
     myButton.addEventListener("click", () => {
         alert("Hello, World!");
     });
