@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     const typedText = document.getElementById("typedText");
     const cursor = document.getElementById("cursor");
-    const words = ["I'm a full stack developer.", "I'm a programmer.", "I'm a sysadmin.", "I own/manage multiple communities."]; 
+    const words = ["I'm a full stack developer.", "I'm a programmer.", "I'm a sysadmin.", "I founded/manage multiple communities."]; 
     let wordIndex = 0;
     let letterIndex = 0;
 
