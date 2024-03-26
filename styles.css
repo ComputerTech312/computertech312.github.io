@@ -165,3 +165,49 @@ body.dark-theme .code-block {
     max-height: 400px;
     margin: 0 auto;
 }
+
+/* Light theme */
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: #f0f0f0;
+        color: #333;
+    }
+
+    header, h1, footer {
+        background-color: #040024;
+        color: #fff;
+    }
+
+    nav a {
+        color: #fff;
+    }
+
+    .code-block {
+        background-color: #f6f8fa;
+        color: #333;
+        border-color: #d1d5da;
+    }
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #04002b;
+        color: #f0f0f0;
+    }
+
+    header, h1, footer {
+        background-color: #02000f;
+        color: #f0f0f0;
+    }
+
+    nav a {
+        color: #f0f0f0;
+    }
+
+    .code-block {
+        background-color: #333;
+        color: #f0f0f0;
+        border-color: #f0f0f0;
+    }
+}
