@@ -1,26 +1,26 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const body = document.body;
+    const DARK_THEME = 'dark';
+    const LIGHT_THEME = 'light';
+    const TYPING_SPEED = 150;
+    const DELETING_SPEED = 50;
+    const WAIT_BEFORE_DELETE = 1500;
+    const WAIT_BEFORE_TYPE = 1500;
+    const CURSOR_BLINK_SPEED = 500;
     
     function setTheme(theme) {
-        if(theme === "dark") {
-            body.classList.add('dark-theme');
-        } else {
-            body.classList.remove('dark-theme');
-        }
+        body.classList.toggle(DARK_THEME, theme === DARK_THEME);
         localStorage.setItem('theme', theme);
     }
 
-    // Check if the user has set their system to use a dark theme
-    if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        setTheme('dark');
-    } else {
-        setTheme('light');
+    function prefersDarkScheme() {
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
 
-    // Listen for changes to the prefers-color-scheme media query
+    setTheme(prefersDarkScheme() ? DARK_THEME : LIGHT_THEME);
+
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        const newTheme = e.matches ? 'dark' : 'light';
-        setTheme(newTheme);
+        setTheme(e.matches ? DARK_THEME : LIGHT_THEME);
     });
 
     const typedText = document.getElementById("typedText");
@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         typedText.textContent += word[letterIndex];
         letterIndex++;
         if (letterIndex === word.length) {
-            setTimeout(deleteLetter, 1500);
+            setTimeout(deleteLetter, WAIT_BEFORE_DELETE);
             return;
         }
-        setTimeout(typeLetter, 150);
+        setTimeout(typeLetter, TYPING_SPEED);
     }
 
     function deleteLetter() {
@@ -46,22 +46,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
         letterIndex--;
         if (letterIndex === 0) {
             setTimeout(() => {
-                wordIndex++;
-                if (wordIndex === words.length) {
-                    wordIndex = 0;
-                }
+                wordIndex = (wordIndex + 1) % words.length;
                 typeLetter();
-            }, 1500);
+            }, WAIT_BEFORE_TYPE);
             return;
         }
-        setTimeout(deleteLetter, 50);
+        setTimeout(deleteLetter, DELETING_SPEED);
     }
 
     typeLetter();
 
     setInterval(() => {
         cursor.style.opacity = cursor.style.opacity === "0" ? "1" : "0";
-    }, 500);
+    }, CURSOR_BLINK_SPEED);
 
     const languageColors = {
         'Python': 'blue',
@@ -121,5 +118,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         })
         .catch((error) => {
             console.error('Error fetching data:', error);
+            // Add user-friendly error handling here
         });
 });
