@@ -19,6 +19,7 @@ body {
     color: var(--main-color);
     display: grid;
     grid-template-rows: auto 1fr auto;
+    padding-bottom: 50px; /* Adjust this value to match the height of your footer */
 }
 
 header, h1, footer {
@@ -72,13 +73,8 @@ button:hover {
 }
 
 .code-block {
-    font-family: monospace;
-    background-color: #f6f8fa;
-    padding: 16px;
-    border-radius: 6px;
-    border: 1px solid #d1d5da;
-    overflow: auto;
-    margin: var(--common-margin);
+    flex: 1;
+    margin-right: 20px; /* Add some space between the code box and the chart */
 }
 
 footer {
@@ -145,9 +141,8 @@ body.dark-theme .code-block {
 }
 
 #chartContainer {
-    max-width: 400px;
-    max-height: 400px;
-    margin: 0 auto;
+    flex: 1;
+    margin-left: 50px; /* Adjust this value as needed */
 }
 
 /* Light theme */
@@ -233,6 +228,8 @@ body.dark-theme .code-block {
     color: var(--main-color);
 }
 
+
+
 /* Mobile view */
 @media screen and (max-width: 600px) {
     body {
@@ -268,37 +265,24 @@ body.dark-theme .code-block {
         font-size: 0.9em; /* Adjust font size for code blocks */
     }
 
+    .chart-section {
+        flex: 1;
+        margin-left: 100px; /* Adjust this value as needed */
+    }
+
     #chartContainer {
         max-width: 100%;
         max-height: 100%;
+        margin-left: 20; /* Remove the left margin on smaller screens */
     }
+}
 
-    .post-list a, .post-list h2 a {
-        font-size: 1.1em; /* Adjust font size for post list items */
-    }
+.content-container {
+    display: flex;
+    justify-content: space-between;
+}
 
-    .blog-post {
-        font-size: 1em; /* Adjust font size for blog posts */
-        line-height: 1.8; /* Increase line height for better readability */
-    }
-
-    header, h1, footer {
-        padding: 0.5rem; /* Adjust padding for header, h1, and footer */
-    }
-
-    h1 {
-        font-size: 1.5em; /* Adjust font size for h1 */
-    }
-
-    p, button, h2 {
-        margin-left: 0; /* Remove left margin */
-    }
-
-    footer {
-        padding: 0.2rem 0; /* Adjust padding for footer */
-    }
-
-    #typingEffect {
-        font-size: 1.4rem; /* Adjust font size for typing effect */
-    }
+.code-block {
+    flex: 1;
+    margin-right: 20px; /* Add some space between the code box and the chart */
 }
