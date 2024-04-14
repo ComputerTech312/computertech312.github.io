@@ -27,31 +27,42 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const cursor = document.getElementById("cursor");
     const words = ["I'm a full stack developer.", "I'm a programmer.", "I'm a sysadmin.", "I founded/manage multiple communities."]; 
     let wordIndex = 0;
-    let letterIndex = 0;
 
     function typeLetter() {
         const word = words[wordIndex];
-        typedText.textContent += word[letterIndex];
-        letterIndex++;
-        if (letterIndex === word.length) {
-            setTimeout(deleteLetter, WAIT_BEFORE_DELETE);
-            return;
+        let letterIndex = 0; // Reset letterIndex for each word
+
+        function typeNextLetter() {
+            typedText.textContent += word[letterIndex];
+            letterIndex++;
+            if (letterIndex === word.length) {
+                setTimeout(deleteLetter, WAIT_BEFORE_DELETE);
+                return;
+            }
+            setTimeout(typeNextLetter, TYPING_SPEED);
         }
-        setTimeout(typeLetter, TYPING_SPEED);
+
+        typeNextLetter();
     }
 
     function deleteLetter() {
         const word = words[wordIndex];
-        typedText.textContent = word.slice(0, letterIndex - 1);
-        letterIndex--;
-        if (letterIndex === 0) {
-            setTimeout(() => {
-                wordIndex = (wordIndex + 1) % words.length;
-                typeLetter();
-            }, WAIT_BEFORE_TYPE);
-            return;
+        let letterIndex = word.length; // Reset letterIndex for each word
+
+        function deleteNextLetter() {
+            typedText.textContent = word.slice(0, letterIndex - 1);
+            letterIndex--;
+            if (letterIndex === 0) {
+                setTimeout(() => {
+                    wordIndex = (wordIndex + 1) % words.length;
+                    typeLetter();
+                }, WAIT_BEFORE_TYPE);
+                return;
+            }
+            setTimeout(deleteNextLetter, DELETING_SPEED);
         }
-        setTimeout(deleteLetter, DELETING_SPEED);
+
+        deleteNextLetter();
     }
 
     typeLetter();
@@ -62,10 +73,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     const languageColors = {
         'Python': 'blue',
-        'JavaScript': '',
+        'JavaScript': 'yellow', // Set a color for JavaScript
         'HTML': 'green',
-        'CSS': 'yellow',
-        'Java': 'yellow',
+        'CSS': 'red',
+        'Java': 'orange',
     };
 
     const defaultColors = ['grey', 'silver', 'brown', 'pink', 'magenta'];
@@ -74,7 +85,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const apiUrl = `https://api.github.com/users/${username}/repos`;
 
     fetch(apiUrl)
-        .then((response) => response.json())
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then((data) => {
             const languageData = {};
 
@@ -99,7 +115,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });
 
             const chart = new Chart(ctx, {
-                type: 'pie',
+                type: 'bar', // Changed from 'horizontalBar'
                 data: {
                     labels: Object.keys(languageData),
                     datasets: [
@@ -113,6 +129,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    indexAxis: 'y', // Added this line
+                    scales: {
+                        x: { // Changed from 'xAxes'
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
                 },
             });
         })

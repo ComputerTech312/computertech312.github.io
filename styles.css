@@ -232,3 +232,73 @@ body.dark-theme .code-block {
     line-height: 1.6;
     color: var(--main-color);
 }
+
+/* Mobile view */
+@media screen and (max-width: 600px) {
+    body {
+        grid-template-rows: auto 1fr auto;
+        padding: 10px; /* Increase padding to the body */
+        max-width: 90%; /* Set maximum width */
+        margin: 0 auto; /* Center the body */
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center; /* Center the navigation items */
+        padding: 1rem; /* Increase padding in navigation */
+    }
+
+    nav li {
+        margin: 0.5rem 0; /* Increase margin for navigation items */
+        text-align: center; /* Center the text of navigation items */
+    }
+
+    nav a, #theme-switcher {
+        font-size: 1.2em; /* Increase font size for easier tapping */
+    }
+
+    button {
+        margin: var(--common-margin) auto;
+        width: 100%; /* Make buttons full width */
+        font-size: 1em; /* Adjust font size for buttons */
+    }
+
+    .code-block {
+        margin: var(--common-margin) auto;
+        font-size: 0.9em; /* Adjust font size for code blocks */
+    }
+
+    #chartContainer {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .post-list a, .post-list h2 a {
+        font-size: 1.1em; /* Adjust font size for post list items */
+    }
+
+    .blog-post {
+        font-size: 1em; /* Adjust font size for blog posts */
+        line-height: 1.8; /* Increase line height for better readability */
+    }
+
+    header, h1, footer {
+        padding: 0.5rem; /* Adjust padding for header, h1, and footer */
+    }
+
+    h1 {
+        font-size: 1.5em; /* Adjust font size for h1 */
+    }
+
+    p, button, h2 {
+        margin-left: 0; /* Remove left margin */
+    }
+
+    footer {
+        padding: 0.2rem 0; /* Adjust padding for footer */
+    }
+
+    #typingEffect {
+        font-size: 1.4rem; /* Adjust font size for typing effect */
+    }
+}
