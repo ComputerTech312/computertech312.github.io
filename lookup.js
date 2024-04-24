@@ -16,10 +16,47 @@ document.getElementById('lookup-form').addEventListener('submit', function(event
     }
 });
 
+document.getElementById('subnet-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const ip = document.getElementById('subnet-ip').value;
+    const mask = document.getElementById('subnet-mask').value;
+    if (isValidIP(ip) && isValidIP(mask)) {
+        const subnet = calculateSubnet(ip, mask);
+        document.getElementById('subnet-result').textContent = `Network: ${subnet.network}, Broadcast: ${subnet.broadcast}`;
+    } else {
+        document.getElementById('subnet-result').textContent = 'Invalid input. Please enter a valid IP and subnet mask.';
+    }
+});
+
 function isValidIP(ip) {
     const ipV4Regex = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
-    const ipV6Regex = /^([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])$/;
-    return ipV4Regex.test(ip) || ipV6Regex.test(ip);
+    const cidrRegex = /^[0-9]{1,2}$/;
+    return ipV4Regex.test(ip) || cidrRegex.test(ip);
+}
+
+function calculateSubnet(ip, mask) {
+    const ipParts = ip.split('.').map(part => parseInt(part, 10));
+    let maskParts;
+
+    if (mask.includes('.')) { // Subnet mask is in IP format
+        maskParts = mask.split('.').map(part => parseInt(part, 10));
+    } else { // Subnet mask is in CIDR format
+        let cidr = parseInt(mask, 10);
+        maskParts = [];
+        for (let i = 0; i < 4; i++) {
+            const bits = Math.min(cidr, 8);
+            maskParts.push(((2 ** bits) - 1) << (8 - bits));
+            cidr -= bits;
+        }
+    }
+
+    const network = ipParts.map((part, index) => part & maskParts[index]);
+    const broadcast = network.map((part, index) => part | (255 - maskParts[index]));
+
+    return {
+        network: network.join('.'),
+        broadcast: broadcast.join('.')
+    };
 }
 
 function isValidDomain(domain) {
@@ -39,28 +76,23 @@ function ipLookup(ip) {
             const resultDiv = document.getElementById('lookup-result');
             resultDiv.innerHTML = `
                 <iframe
-                    width="800"  // Increase the width
-                    height="600" // Increase the height
-                    style="border:0; float:right; margin-left:20px;" // Increase the left margin
+                    width="800"
+                    height="600"
+                    style="border:0; float:right; margin-left:20px;"
                     loading="lazy"
                     allowfullscreen
                     src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAtrFh_crzA2RkiayqwdMLhE4kx4Op9RSI&q=${data.latitude},${data.longitude}">
                 </iframe>
                 <h2>IP Lookup Result</h2>
                 <p><strong>IP:</strong> ${data.ip}</p>
-                <p><strong>Network:</strong> ${data.network}</p>
-                <p><strong>Version:</strong> ${data.version}</p>
                 <p><strong>City:</strong> ${data.city}</p>
                 <p><strong>Region:</strong> ${data.region}</p>
                 <p><strong>Country:</strong> ${data.country_name}</p>
                 <p><strong>Postal Code:</strong> ${data.postal}</p>
                 <p><strong>Timezone:</strong> ${data.timezone}</p>
-                <p><strong>UTC Offset:</strong> ${data.utc_offset}</p>
                 <p><strong>Country Calling Code:</strong> ${data.country_calling_code}</p>
                 <p><strong>Currency:</strong> ${data.currency_name} (${data.currency})</p>
                 <p><strong>Languages:</strong> ${data.languages}</p>
-                <p><strong>Country Area:</strong> ${data.country_area}</p>
-                <p><strong>Country Population:</strong> ${data.country_population}</p>
                 <p><strong>ASN:</strong> ${data.asn}</p>
                 <p><strong>ISP:</strong> ${data.org}</p>
             `;
@@ -90,52 +122,4 @@ function dnsLookup(type, domain) {
             console.error('Error:', error);
             document.getElementById('lookup-result').textContent = 'DNS lookup failed. Please try again.';
         });
-}
-
-document.getElementById('subnet-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const ipAddress = document.getElementById('ip-address').value;
-    const cidrValue = document.getElementById('cidr-value').value;
-    if (isValidIP(ipAddress) && isValidCIDR(cidrValue)) {
-        calculateSubnet(ipAddress, cidrValue);
-    } else {
-        document.getElementById('subnet-result').textContent = 'Invalid input. Please enter a valid IP address and CIDR value.';
-    }
-});
-
-function isValidCIDR(cidr) {
-    const cidrValue = parseInt(cidr, 10);
-    return Number.isInteger(cidrValue) && cidrValue >= 0 && cidrValue <= 128;
-}
-
-function calculateSubnet(ip, cidr) {
-    // Convert IP address and CIDR value to binary
-    const ipBinary = ip.split('.').map(octet => ('00000000' + parseInt(octet, 10).toString(2)).slice(-8)).join('');
-    const cidrBinary = ('1'.repeat(cidr) + '0'.repeat(32 - cidr)).split('');
-
-    // Calculate network address and broadcast address
-    const networkAddress = cidrBinary.map((bit, index) => bit === '1' ? ipBinary[index] : '0').join('');
-    const broadcastAddress = cidrBinary.map((bit, index) => bit === '0' ? '1' : ipBinary[index]).join('');
-
-    // Calculate number of valid hosts
-    const numHosts = Math.pow(2, 32 - cidr) - 2;
-
-    // Calculate wildcard mask and subnet mask
-    const wildcardMask = cidrBinary.map(bit => bit === '1' ? '0' : '1').join('');
-    const subnetMask = cidrBinary.join('');
-
-    // Convert binary addresses and masks to decimal
-    const networkAddressDecimal = networkAddress.match(/.{8}/g).map(byte => parseInt(byte, 2)).join('.');
-    const broadcastAddressDecimal = broadcastAddress.match(/.{8}/g).map(byte => parseInt(byte, 2)).join('.');
-    const wildcardMaskDecimal = wildcardMask.match(/.{8}/g).map(byte => parseInt(byte, 2)).join('.');
-    const subnetMaskDecimal = subnetMask.match(/.{8}/g).map(byte => parseInt(byte, 2)).join('.');
-
-    // Display subnet information on webpage
-    document.getElementById('subnet-result').innerHTML = `
-        <p><strong>Network Address:</strong> ${networkAddressDecimal}</p>
-        <p><strong>Broadcast Address:</strong> ${broadcastAddressDecimal}</p>
-        <p><strong>Number of Valid Hosts:</strong> ${numHosts}</p>
-        <p><strong>Wildcard Mask:</strong> ${wildcardMaskDecimal}</p>
-        <p><strong>Subnet Mask:</strong> ${subnetMaskDecimal}</p>
-    `;
 }
