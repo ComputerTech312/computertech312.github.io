@@ -28,7 +28,7 @@ function isValidDomain(domain) {
 }
 
 function ipLookup(ip) {
-    fetch(`http://ip-api.com/json/${ip}`)
+    fetch(`https://freeipapi.com/api/json/${ip}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('IP lookup failed');
@@ -39,10 +39,10 @@ function ipLookup(ip) {
             const resultDiv = document.getElementById('lookup-result');
             resultDiv.innerHTML = `
                 <h2>IP Lookup Result</h2>
-                <p><strong>IP:</strong> ${data.query}</p>
+                <p><strong>IP:</strong> ${data.ip}</p>
                 <p><strong>City:</strong> ${data.city}</p>
-                <p><strong>Region:</strong> ${data.regionName}</p>
-                <p><strong>Country:</strong> ${data.country}</p>
+                <p><strong>Region:</strong> ${data.region}</p>
+                <p><strong>Country:</strong> ${data.country_name}</p>
                 <p><strong>ISP:</strong> ${data.isp}</p>
                 <iframe
                     width="600"
@@ -50,7 +50,7 @@ function ipLookup(ip) {
                     style="border:0"
                     loading="lazy"
                     allowfullscreen
-                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAtrFh_crzA2RkiayqwdMLhE4kx4Op9RSI&q=${data.lat},${data.lon}">
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAtrFh_crzA2RkiayqwdMLhE4kx4Op9RSI&q=${data.latitude},${data.longitude}">
                 </iframe>
             `;
         })
