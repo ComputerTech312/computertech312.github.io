@@ -139,16 +139,3 @@ function calculateSubnet(ip, cidr) {
         <p><strong>Subnet Mask:</strong> ${subnetMaskDecimal}</p>
     `;
 }
-
-window.onload = function() {
-    // Get the select element
-    var select = document.getElementById("cidr-value");
-
-    // Add an option for each CIDR value from 0 to 128
-    for (var i = 128; i >= 0; i--) {
-        var option = document.createElement("option");
-        option.value = i;
-        option.text = "/" + i;
-        select.add(option);
-    }
-};
