@@ -28,7 +28,7 @@ function isValidDomain(domain) {
 }
 
 function ipLookup(ip) {
-    fetch(`https://freeipapi.com/api/json/${ip}`)
+    fetch(`https://ipapi.co/${ip}/json/`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('IP lookup failed');
@@ -43,7 +43,7 @@ function ipLookup(ip) {
                 <p><strong>City:</strong> ${data.city}</p>
                 <p><strong>Region:</strong> ${data.region}</p>
                 <p><strong>Country:</strong> ${data.country_name}</p>
-                <p><strong>ISP:</strong> ${data.isp}</p>
+                <p><strong>ISP:</strong> ${data.org}</p>
                 <iframe
                     width="600"
                     height="450"
