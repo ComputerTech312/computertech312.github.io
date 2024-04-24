@@ -38,20 +38,31 @@ function ipLookup(ip) {
         .then(data => {
             const resultDiv = document.getElementById('lookup-result');
             resultDiv.innerHTML = `
-                <h2>IP Lookup Result</h2>
-                <p><strong>IP:</strong> ${data.ip}</p>
-                <p><strong>City:</strong> ${data.city}</p>
-                <p><strong>Region:</strong> ${data.region}</p>
-                <p><strong>Country:</strong> ${data.country_name}</p>
-                <p><strong>ISP:</strong> ${data.org}</p>
                 <iframe
-                    width="600"
-                    height="450"
-                    style="border:0"
+                    width="800"  // Increase the width
+                    height="600" // Increase the height
+                    style="border:0; float:right; margin-left:20px;" // Increase the left margin
                     loading="lazy"
                     allowfullscreen
                     src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAtrFh_crzA2RkiayqwdMLhE4kx4Op9RSI&q=${data.latitude},${data.longitude}">
                 </iframe>
+                <h2>IP Lookup Result</h2>
+                <p><strong>IP:</strong> ${data.ip}</p>
+                <p><strong>Network:</strong> ${data.network}</p>
+                <p><strong>Version:</strong> ${data.version}</p>
+                <p><strong>City:</strong> ${data.city}</p>
+                <p><strong>Region:</strong> ${data.region}</p>
+                <p><strong>Country:</strong> ${data.country_name}</p>
+                <p><strong>Postal Code:</strong> ${data.postal}</p>
+                <p><strong>Timezone:</strong> ${data.timezone}</p>
+                <p><strong>UTC Offset:</strong> ${data.utc_offset}</p>
+                <p><strong>Country Calling Code:</strong> ${data.country_calling_code}</p>
+                <p><strong>Currency:</strong> ${data.currency_name} (${data.currency})</p>
+                <p><strong>Languages:</strong> ${data.languages}</p>
+                <p><strong>Country Area:</strong> ${data.country_area}</p>
+                <p><strong>Country Population:</strong> ${data.country_population}</p>
+                <p><strong>ASN:</strong> ${data.asn}</p>
+                <p><strong>ISP:</strong> ${data.org}</p>
             `;
         })
         .catch(error => {
