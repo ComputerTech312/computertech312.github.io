@@ -91,3 +91,64 @@ function dnsLookup(type, domain) {
             document.getElementById('lookup-result').textContent = 'DNS lookup failed. Please try again.';
         });
 }
+
+document.getElementById('subnet-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const ipAddress = document.getElementById('ip-address').value;
+    const cidrValue = document.getElementById('cidr-value').value;
+    if (isValidIP(ipAddress) && isValidCIDR(cidrValue)) {
+        calculateSubnet(ipAddress, cidrValue);
+    } else {
+        document.getElementById('subnet-result').textContent = 'Invalid input. Please enter a valid IP address and CIDR value.';
+    }
+});
+
+function isValidCIDR(cidr) {
+    const cidrValue = parseInt(cidr, 10);
+    return Number.isInteger(cidrValue) && cidrValue >= 0 && cidrValue <= 128;
+}
+
+function calculateSubnet(ip, cidr) {
+    // Convert IP address and CIDR value to binary
+    const ipBinary = ip.split('.').map(octet => ('00000000' + parseInt(octet, 10).toString(2)).slice(-8)).join('');
+    const cidrBinary = ('1'.repeat(cidr) + '0'.repeat(32 - cidr)).split('');
+
+    // Calculate network address and broadcast address
+    const networkAddress = cidrBinary.map((bit, index) => bit === '1' ? ipBinary[index] : '0').join('');
+    const broadcastAddress = cidrBinary.map((bit, index) => bit === '0' ? '1' : ipBinary[index]).join('');
+
+    // Calculate number of valid hosts
+    const numHosts = Math.pow(2, 32 - cidr) - 2;
+
+    // Calculate wildcard mask and subnet mask
+    const wildcardMask = cidrBinary.map(bit => bit === '1' ? '0' : '1').join('');
+    const subnetMask = cidrBinary.join('');
+
+    // Convert binary addresses and masks to decimal
+    const networkAddressDecimal = networkAddress.match(/.{8}/g).map(byte => parseInt(byte, 2)).join('.');
+    const broadcastAddressDecimal = broadcastAddress.match(/.{8}/g).map(byte => parseInt(byte, 2)).join('.');
+    const wildcardMaskDecimal = wildcardMask.match(/.{8}/g).map(byte => parseInt(byte, 2)).join('.');
+    const subnetMaskDecimal = subnetMask.match(/.{8}/g).map(byte => parseInt(byte, 2)).join('.');
+
+    // Display subnet information on webpage
+    document.getElementById('subnet-result').innerHTML = `
+        <p><strong>Network Address:</strong> ${networkAddressDecimal}</p>
+        <p><strong>Broadcast Address:</strong> ${broadcastAddressDecimal}</p>
+        <p><strong>Number of Valid Hosts:</strong> ${numHosts}</p>
+        <p><strong>Wildcard Mask:</strong> ${wildcardMaskDecimal}</p>
+        <p><strong>Subnet Mask:</strong> ${subnetMaskDecimal}</p>
+    `;
+}
+
+window.onload = function() {
+    // Get the select element
+    var select = document.getElementById("cidr-value");
+
+    // Add an option for each CIDR value from 0 to 128
+    for (var i = 128; i >= 0; i--) {
+        var option = document.createElement("option");
+        option.value = i;
+        option.text = "/" + i;
+        select.add(option);
+    }
+};
