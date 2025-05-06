@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-9624288639111761">
+    <title>ComputerTech</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="https://paste.computertech.co">Paste</a></li>
+                    <li><a href="https://github.com/computertech312">GitHub</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="https://forum.computertech.co">Forum</a></li>
+                    <li><a href="lookup.html">Lookup</a></li> 
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>
+                <img src="ct.png" alt="ComputerTech Logo">
+            </h1>
+            <section>
+                <h2>About Me</h2>
+                <p>
+                    I am Colby also known as ComputerTech.
+                    <span class="typing-wrapper"><span id="typedText"></span><span id="cursor">|</span></span>
+                    <span class="new-line"></span> 
+                    You'll usually find me by finding broken stuff, which was probably broken by me.
+                    I am from Ireland, and I spend most of my spare time on IRC. 
+                    I hold staff positions on multiple IRC networks, including TechNet, Rizon, DareNet, and others. 
+                    My favourite hobbies are programming, scripting, and being a sysadmin.
+
+                    There is no place like GeekShed.
+                </p>
+            </section>
+            <div class="content-container">
+                <section>
+                    <h2>My Code</h2>
+                    <pre class="code-block">
+                        <code>
+                            from colby import information
+
+                            class AboutMe:
+                                def __init__(self):
+                                    self.name = 'Colby'
+                                    self.user = 'ComputerTech'
+                                    self.age = 1028541600
+                                    self.gender = 'male'
+                                    self.about = 'full stack developer/sysadmin that enjoys breaking and fixing things.'
+                                    self.birth_country = 'Ireland'
+                                    self.location = 'Warsaw, Poland'
+                                    self.hobbies = ['Programming', 'System Adminstrator', 'IRC', 'LEGO']
+                                    self.languages = ['Python', 'Go', 'JavaScript', 'Tcl', 'C', 'C++']
+                                    self.os = ['Ubuntu']
+                                    self.timezone = ['UTC+1']
+                                    self.projects = [
+                                        {
+                                            'project': 'elitebot',
+                                            'language': 'Python',
+                                            'description': "This is a Python-based IRC bot that is simple and doesn't use any third-party frameworks."
+                                        },
+                                    ]
+                            
+                                def introduce(self):
+                                    print(f'Hello, my name is {self.name}. I\'m from {self.location} and {self.age} years old.')
+                                    print(f'I was born in {self.birth_country} and currently live in {self.current_country}.') 
+                                    print(f'I\'m a {self.about}.')
+                            
+                            my_profile = AboutMe()
+                            my_profile.introduce()
+                        </code>
+                    </pre>
+                </section>
+                <section class="chart-section">
+                    <h2>My Top Used Languages</h2>
+                    <div id="chartContainer">
+                        <canvas id="languageChart"></canvas>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; 2024 ComputerTech</p>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

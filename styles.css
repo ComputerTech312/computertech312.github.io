@@ -1,0 +1,288 @@
+:root {
+    --main-color: #333;
+    --secondary-color: #f0f0f0;
+    --highlight-color: #040024;
+    --light-theme-background: #f0f0f0;
+    --dark-theme-background: #04002b;
+    --common-margin: 20px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--main-color);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding-bottom: 50px; /* Adjust this value to match the height of your footer */
+}
+
+header, h1, footer {
+    background-color: var(--highlight-color);
+    color: #fff;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin: 0 1rem;
+}
+
+nav a, #theme-switcher {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav a:hover, #theme-switcher:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    padding: 1rem;
+    margin: 0;
+}
+
+button {
+    background-color: var(--main-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    margin: var(--common-margin);
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.code-block {
+    flex: 1;
+    margin-right: 20px; /* Add some space between the code box and the chart */
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0.25rem 0;
+}
+
+#typingEffect {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#cursor {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.new-line {
+    display: block;
+}
+
+p, button, h2 {
+    margin-left: var(--common-margin);
+}
+
+body.dark-theme {
+    background-color: var(--dark-theme-background);
+    color: var(--light-theme-background);
+}
+
+body.dark-theme header, body.dark-theme h1, body.dark-theme footer {
+    background-color: #02000f;
+    color: var(--light-theme-background);
+}
+
+body.dark-theme nav a {
+    color: var(--light-theme-background);
+}
+
+body.dark-theme button, body.dark-theme button:hover {
+    background-color: var(--light-theme-background);
+    color: #010247;
+}
+
+body.dark-theme .code-block {
+    background-color: var(--main-color);
+    color: var(--light-theme-background);
+    border-color: var(--light-theme-background);
+}
+
+#theme-switcher {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#chartContainer {
+    flex: 1;
+    margin-left: 50px; /* Adjust this value as needed */
+}
+
+/* Light theme */
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: var(--light-theme-background);
+        color: var(--main-color);
+    }
+
+    header, h1, footer {
+        background-color: var(--highlight-color);
+        color: #fff;
+    }
+
+    nav a {
+        color: #fff;
+    }
+
+    .code-block {
+        background-color: #f6f8fa;
+        color: var(--main-color);
+        border-color: #d1d5da;
+    }
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--dark-theme-background);
+        color: var(--light-theme-background);
+    }
+
+    header, h1, footer {
+        background-color: #02000f;
+        color: var(--light-theme-background);
+    }
+
+    nav a {
+        color: var(--light-theme-background);
+    }
+
+    .code-block {
+        background-color: var(--main-color);
+        color: var(--light-theme-background);
+        border-color: var(--light-theme-background);
+    }
+}
+
+.post-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.post-list li {
+    margin-bottom: 1em;
+}
+
+.post-list a, .post-list h2 a {
+    font-size: 1.5em;
+    font-family: 'Arial', sans-serif;
+    color: var(--main-color);
+    text-decoration: none;
+}
+
+.post-list a:hover, .post-list h2 a:hover {
+    color: #007BFF;
+}
+
+.post-date {
+    font-size: 0.8em;
+    color: #888;
+    margin-left: 1em;
+}
+
+.post-list h2 {
+    margin: 0;
+}
+
+.blog-post {
+    font-family: 'Georgia', serif;
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: var(--main-color);
+}
+
+
+
+/* Mobile view */
+@media screen and (max-width: 600px) {
+    body {
+        grid-template-rows: auto 1fr auto;
+        padding: 10px; /* Increase padding to the body */
+        max-width: 90%; /* Set maximum width */
+        margin: 0 auto; /* Center the body */
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center; /* Center the navigation items */
+        padding: 1rem; /* Increase padding in navigation */
+    }
+
+    nav li {
+        margin: 0.5rem 0; /* Increase margin for navigation items */
+        text-align: center; /* Center the text of navigation items */
+    }
+
+    nav a, #theme-switcher {
+        font-size: 1.2em; /* Increase font size for easier tapping */
+    }
+
+    button {
+        margin: var(--common-margin) auto;
+        width: 100%; /* Make buttons full width */
+        font-size: 1em; /* Adjust font size for buttons */
+    }
+
+    .code-block {
+        margin: var(--common-margin) auto;
+        font-size: 0.9em; /* Adjust font size for code blocks */
+    }
+
+    .chart-section {
+        flex: 1;
+        margin-left: 100px; /* Adjust this value as needed */
+    }
+
+    #chartContainer {
+        max-width: 100%;
+        max-height: 100%;
+        margin-left: 20; /* Remove the left margin on smaller screens */
+    }
+}
+
+.content-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.code-block {
+    flex: 1;
+    margin-right: 20px; /* Add some space between the code box and the chart */
+}
